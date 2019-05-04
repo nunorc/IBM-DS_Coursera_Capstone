@@ -34,18 +34,19 @@ Then we find the city geographical location, by discovering each city
 latitude and longitude.
 
 And finally, we query the Foursquare API, available from [https://developer.foursquare.com/](https://developer.foursquare.com/),
-to gather information about the venues available in each city. Much in
-the same way that we did while segmenting and clustering
-neighborhoods in the city of Toronto. We start by gathering
-the venues that are in the radius of the city geographical
-location, and aggregate the mean of venues across all the venues,
-by category, in each city.
+to gather information about the venues available in each city. We start by gathering
+the venues that are in the radius of the city geographical location, and aggregate all
+the venues by city, by adding the venues for each category for each city.
 
 The final dataset includes a list of cities, each city latitude and longitude,
-and a vector of categories means that represent the points of interest available
+and a vector of categories sums that represent the points of interest available
 in the city.
+The following figure illustrates the first rows of the dataset, 
+a vector of categories sums for each city:
 
-The following figure includes a world map illustrating the cities available in
+<img src="imgs/dataset.png" alt="Dataset snippet plot" width="600" />
+
+And, the following figure includes a world map illustrating the cities available in
 the dataset generated using Folium, more information available from
 [https://python-visualization.github.io/folium/](https://python-visualization.github.io/folium/):
 
@@ -70,7 +71,7 @@ The following steps were performed during the analysis:
    2. Each venue has the category information (e.g. _Hotel_, _Winery_),
       one-hot encode the venue category for every venue and add the city
       name information;
-   3. Next group together by city using the mean for every category;
+   3. Next group together by city using the sum for every category;
    4. The result is a dataframe that contains, for each city, a vector
        representing the venues of interest found in the city;
 3. Run the clustering algorithm:
@@ -119,7 +120,8 @@ not very off. Many European and North American cities were grouped together,
 which makes sense when comparing with groups that include for example Cities
 on Arab countries, or in the Asian continent. The venues of interest available
 in these different countries is maybe explained by the cultural and
-heritage differences.
+heritage differences. Another example is the cluster that contains the cities in
+Southern Europe.
 
 The _elbow method_ used to try to come up with a sensible number of clusters
 to use did not yield a clear result, there is no clear steepness change in the
@@ -156,6 +158,6 @@ to create a special (targeted) promotion for that person.
 The final set of clusters, illustrated on a world map is available from
 [https://nunorc.github.io/IBM-DS_Coursera_Capstone/](https://nunorc.github.io/IBM-DS_Coursera_Capstone/).
 
-Future work includes adding more cities of interest to the initial dataset,
-coming up with other ways to represent the venues of interest, and include
-more sources of information concerning these venues available in the cities.
+Future work includes adding more cities to the initial dataset,
+coming up with other ways to represent the points of interest, and include
+more sources of information concerning the venues available in the cities.
